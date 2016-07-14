@@ -1,6 +1,7 @@
 var prompt = require('prompt');
 var inquirer = require('inquirer');
 var mysql = require('mysql');
+var colors = require('colors');
 
 var connection = mysql.createConnection({
      host: 'localhost',
@@ -48,9 +49,9 @@ function showInventory() {
                     connection.query('SELECT * FROM products WHERE id=' + itemId, function(err, selectedItem) {
                     	if (err) throw err;
                          if (selectedItem[0].StockQuantity - quantity >= 0) {
-                              console.log("Bamazon's Inventory has enough of that item (" + selectedItem[0].ProductName + ")!");
-                              console.log("Quantity in Stock: " + selectedItem[0].StockQuantity + " Order Quantity: " + quantity);
-                              console.log("You will be charged " + (order.quantity * selectedItem[0].Price) +  " dollars.  Thank you for shopping at Bamazon.");
+                              console.log("Bamazon's Inventory has enough of that item (".green + selectedItem[0].ProductName.green + ")!".green);
+                              console.log("Quantity in Stock: ".green + selectedItem[0].StockQuantity + " Order Quantity: ".green + quantity);
+                              console.log("You will be charged ".green + (order.quantity * selectedItem[0].Price) +  " dollars.  Thank you for shopping at Bamazon.".green);
                               //  This is the code to remove the item from inventory.
                               // Some code from the mysql NPM readme: connection.query('UPDATE users SET foo = ?, bar = ?, baz = ? WHERE id = ?', ['a', 'b', 'c', userId], function(err, results) {});
                               connection.query('UPDATE products SET StockQuantity=? WHERE id=?', [selectedItem[0].StockQuantity - quantity, itemId],
@@ -63,7 +64,8 @@ function showInventory() {
                          }
 
                          else {
-                              console.log("Insufficient quantity.  Please order less of that item, as Bamazon only has " + selectedItem[0].StockQuantity + " " + selectedItem[0].ProductName + " in stock at this moment.");
+                              console.log("Insufficient quantity.  Please order less of that item, as Bamazon only has ".red + selectedItem[0].StockQuantity + " " + selectedItem[0].ProductName.red + " in stock at this moment.".red);
+                              showInventory();
                          }
                     });
           });

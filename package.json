@@ -4,6 +4,7 @@
   "description": "An inventory app for The Coding Boot Camp",
   "main": "Bamazon.js",
   "dependencies": {
+    "colors": "^1.1.2",
     "inquirer": "^1.1.2",
     "mysql": "^2.11.1",
     "prompt": "^1.0.0"
