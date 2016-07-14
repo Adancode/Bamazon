@@ -52,7 +52,7 @@ function showInventory() {
                               console.log("Quantity in Stock: " + selectedItem[0].StockQuantity + " Order Quantity: " + quantity);
                               console.log("You will be charged " + (order.quantity * selectedItem[0].Price) +  " dollars.  Thank you for shopping at Bamazon.");
                               //  This is the code to remove the item from inventory.
-                              // Some code from the mysql NPM readme: connection.query("UPDATE posts SET title = :title", { title: "Hello MySQL" });
+                              // Some code from the mysql NPM readme: connection.query('UPDATE users SET foo = ?, bar = ?, baz = ? WHERE id = ?', ['a', 'b', 'c', userId], function(err, results) {});
                               connection.query('UPDATE products SET StockQuantity=? WHERE id=?', [selectedItem[0].StockQuantity - quantity, itemId],
                               function(err, inventory) {
                               	if (err) throw err;
