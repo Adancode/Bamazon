@@ -37,7 +37,7 @@ function showInventory() {
           		type: "input",
           		message: "How many would you like to buy?",
           		name: "quantity"
-          	},
+          	}
 
           // Once we are done with all the questions... "then" we do stuff with the answers
           // In this case, we store all of the answers into a "order" object that inquirer makes for us.
